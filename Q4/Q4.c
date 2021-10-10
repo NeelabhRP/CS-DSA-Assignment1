@@ -1,8 +1,7 @@
 #include<stdio.h>
 #include<time.h>
 #include<stdlib.h>
-
-void SelectionSort(long long int a[],long long int n)
+void selection_sort(long long int a[],long long int n)
 {
     for(int i=0;i<n-1;i++)
     {
@@ -18,16 +17,16 @@ void SelectionSort(long long int a[],long long int n)
     }
     printf("Selection Sorted Array:\n");
     for(int i=0;i<n;i++)
-        printf("%lld ",a[i]);
+        printf("%d ",a[i]);
     printf("\n");
     return;
 }
-void BubbleSort(long long int a[],long long int n)
+void bubble_sort(long long int a[],long long int n)
 {
-    int c=1;
-    while(c<n)
+    int counter=1;
+    while(counter<n)
     {
-        for(int i=0;i<n-c;i++)
+        for(int i=0;i<n-counter;i++)
         {
             if(a[i]>a[i+1])
             {
@@ -36,39 +35,37 @@ void BubbleSort(long long int a[],long long int n)
                 a[i+1]=temp;
             }
         }
-        c++;
+        counter++;
     }
     printf("Bubble Sorted Array:\n");
     for(int i=0;i<n;i++)
-        printf("%lld ",a[i]);
+        printf("%d ",a[i]);
     printf("\n");
     return;
 }
-void main()
+int main()
 {
     printf("Enter no of elements:\n");
-    
     long long int n;
-    scanf("%lld",&n);
-    
+    scanf("%d",&n);
     long long int a[n];
-
+    //printf("Enter the elements\n");
     for(int i=0;i<n;i++)
         a[i]=i;
-
-    clock_t start1,end1;
-    long int t1;
-    start1=clock();
-    SelectionSort(a,n);
-    end1=clock();
-    t1=end1-start1;
-    printf("Total time elapsed for selection sort: %f\n",(double)t1/(double)CLOCKS_PER_SEC);
-    
+        //a[i]=rand()%1000;
+        //scanf("%d",&a[i]);
+    clock_t start,end;
+    long int t;
+    start=clock();
+    selection_sort(a,n);
+    end=clock();
+    t=end-start;
+    printf("Total time elapsed for selection sort: %f\n",(double)t/(double)CLOCKS_PER_SEC);
     clock_t start2,end2;
     long int t2;
     start2=clock();
-    BubbleSort(a,n);
+    bubble_sort(a,n);
     end2=clock();
     t2=end2-start2;
-    printf("Total time elapsed for bubble sort: %f\n",(double)t2/(double)CLOCKS_PER_SEC);
+     printf("Total time elapsed for bubble sort: %f\n",(double)t2/(double)CLOCKS_PER_SEC);
 }
